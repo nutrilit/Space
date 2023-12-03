@@ -6,7 +6,7 @@
 
 using namespace std;
 #define predkosc_pocisku 10
-#define rozmiar_pocisku 5
+#define rozmiar_pocisku 20
 
 class Alien {
 public:
@@ -110,16 +110,18 @@ public:
     int x, y, width, height;
     SDL_Rect rect;
     bool active;
+    SDL_Texture* Texture; // Dodaj pole do przechowywania tekstury
 
     Bullet() {
         width = rozmiar_pocisku;
         height = rozmiar_pocisku;
         rect = { x, y, width, height };
         active = false;
+        
     }
 
     void Shoot(int playerX, int playerY) {
-        x = playerX + (width / 2); // pocisk na środku naszego pleyera
+        x = (playerX + (width / 2)) -5; // pocisk na środku naszego pleyera
         y = playerY;
         rect = { x, y, width, height };
         active = true;
@@ -129,6 +131,12 @@ public:
         if (active) {
             y -= predkosc_pocisku;
             rect = { x, y, width, height };
+        }
+    }
+    void Draw(SDL_Renderer* renderer, SDL_Texture* bulletTexture) {
+        if (active) {
+            // Use renderer and bulletTexture to draw the bullet
+            SDL_RenderCopy(renderer, bulletTexture, NULL, &rect);
         }
     }
 };
@@ -193,6 +201,7 @@ public:
     BitmapHandler bh1 = BitmapHandler();
     SDL_Texture* Tex1; //= bh1.LoadTexture("Textury/alien1.png", renderer);
     SDL_Texture* Tex2; //= bh1.LoadTexture("Textury/alien2.png", renderer);
+    SDL_Texture* Tex3;
     SDL_Texture* Pause;
     SDL_Texture* GameOver;
     SDL_Texture* Start;
@@ -201,6 +210,8 @@ public:
     AnimatedObject a1 = AnimatedObject();
     BitmapObject b1 = BitmapObject();
     SpriteObject s1 = SpriteObject();
+
+    SDL_Texture* BulletTexture;
     /////////////////////
     //fpsy od
     const int FPS = 30;
@@ -216,6 +227,7 @@ public:
    // int tmpTime=0;/////////////////////////testy
 
     Engine(int x, int y) {
+       
         //this->Testa= { 10,300,25,25 };/////////////////////////testy
         this->Width = x;
         this->Height = y;
@@ -231,6 +243,7 @@ public:
         if (!window) {
             exit(1); // Wyjœcie z programu w przypadku b³êdu tworzenia okna.
         }
+        BulletTexture = bh1.LoadTexture("Textury/pocisk.png", renderer);
     }
     void CheckCollisions() {
         for (int i = 0; i < p1.bullets.size(); i++) {
@@ -309,6 +322,8 @@ public:
         Background2 = bh1.LoadTexture("Textury/Background2.png", renderer);
         Tex1 = bh1.LoadTexture("Textury/alien1.png", renderer);
         Tex2 = bh1.LoadTexture("Textury/alien2.png", renderer);
+        Tex3 = bh1.LoadTexture("Textury/pocisk.png", renderer);
+
 
         while (isRunning) {
 
@@ -349,6 +364,8 @@ public:
                 frameStart = SDL_GetTicks();
                 MovementHandle();
                 e1.Move();
+                
+                DrawBullets();
                 UpdateBullets();
                 Draw();
                 CheckCollisions();
@@ -397,7 +414,7 @@ public:
             SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
             SDL_RenderPresent(renderer);
             SDL_RenderClear(renderer);
-            //DrawBullets();
+            DrawBullets();
         }
 
     }
@@ -415,8 +432,10 @@ public:
     void DrawBullets() {
         for (int i = 0; i < p1.bullets.size(); i++) {
             if (p1.bullets[i].active) {
-                SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-                SDL_RenderFillRect(renderer, &p1.bullets[i].rect);
+                //SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
+                //SDL_RenderFillRect(renderer, &p1.bullets[i].rect);
+                p1.bullets[i].Draw(renderer, BulletTexture);
+                //SDL_RenderCopy(renderer, p1.bullets[i].Texture, NULL, &p1.bullets[i].rect);
             }
         }
     }
