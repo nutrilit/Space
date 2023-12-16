@@ -3,7 +3,8 @@
 #include <vector>
 #include <SDL_image.h>
 #include "SpriteObject.h"
-
+#include <SDL_ttf.h>
+#include <string>
 using namespace std;
 #define predkosc_pocisku 10
 #define rozmiar_pocisku 20
@@ -184,8 +185,6 @@ public:
         newBullet.Shoot(x, y);
         bullets.push_back(newBullet);
     }
-
-
 };
 
 class Engine {
@@ -225,6 +224,7 @@ public:
     ///////////////////
    /// SDL_Rect Testa;/////////////////////////testy
    // int tmpTime=0;/////////////////////////testy
+
 
     Engine(int x, int y) {
        
@@ -368,6 +368,7 @@ public:
                 DrawBullets();
                 UpdateBullets();
                 Draw();
+                RenderScore();
                 CheckCollisions();
                 CheckCollisions(p1);
                 AlienReinforcement();
@@ -463,6 +464,7 @@ public:
             // SDL_RenderFillRect(renderer, &e1.tab[i].rect);
         }
 
+
     }
     void MovementHandle()
     {
@@ -484,7 +486,44 @@ public:
 
     }
 
+    void RenderScore() {
+        TTF_Font* font = TTF_OpenFont("C:/Labolatorium_grafika/Space/Space/arial.ttf", 24); 
+        if (!font) {
+            cerr << "Failed to load font: " << TTF_GetError() << endl;
+            return;
+        }
+        if (TTF_Init() == -1) {
+            cerr << "SDL_ttf could not be initialized! SDL_ttf Error: " << TTF_GetError() << endl;
+            // Handle the error or exit the program.
+        }
 
+        SDL_Color textColor = { 255, 255, 255 }; // White color
+
+        // Convert the score to a string
+        string scoreText = "Score: " + to_string(p1.score);
+
+        SDL_Surface* textSurface = TTF_RenderText_Solid(font, scoreText.c_str(), textColor);
+        if (!textSurface) {
+            cerr << "Failed to render text surface: " << TTF_GetError() << endl;
+            TTF_CloseFont(font);
+            return;
+        }
+
+        SDL_Texture* scoreTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+        if (!scoreTexture) {
+            cerr << "Failed to create texture from surface: " << SDL_GetError() << endl;
+            SDL_FreeSurface(textSurface);
+            TTF_CloseFont(font);
+            return;
+        }
+
+        SDL_Rect textRect = { 10, 10, textSurface->w, textSurface->h }; // Adjust the position as needed
+        SDL_RenderCopy(renderer, scoreTexture, NULL, &textRect);
+
+        SDL_FreeSurface(textSurface);
+        SDL_DestroyTexture(scoreTexture);
+        TTF_CloseFont(font);
+    }
 
     // Desktruktor
     ~Engine() {
@@ -497,7 +536,14 @@ public:
 };
 
 int main(int argc, char* argv[]) {
+    if (TTF_Init() == -1) {
+        cerr << "SDL_ttf could not be initialized! SDL_ttf Error: " << TTF_GetError() << endl;
+        // Obsłuż błąd lub zakończ program.
+        return 1;
+    }
     Engine game(800, 600); // Tworzenie instancji klasy Engine.
     game.Run();
+    TTF_Quit();
     return 0; // Zakoñczenie programu.
+
 }
