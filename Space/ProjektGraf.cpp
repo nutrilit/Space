@@ -37,10 +37,12 @@ public:
     int x, y;
     int direction = 1;
     int dead;
+    int currentSpeed;
     Enemies()
     {
         this->x = 10;
         this->y = 10;
+        this->currentSpeed = 5;
     }
     void BasePosition()
     {
@@ -68,7 +70,7 @@ public:
     {
         //int direction = 1;
         int change = 0;
-        int speed = 5;
+        int speed = currentSpeed;
         int alien_maxX = 0;
         int alien_maxY = 0;
         int alien_minX = 10000;
@@ -90,6 +92,7 @@ public:
         {
             direction = -1;
             change = 1;
+            currentSpeed += 1;
         }
         if (tab[alien_minX].x <= 0)
         {
