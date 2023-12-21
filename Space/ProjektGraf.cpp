@@ -1,4 +1,4 @@
-﻿#include <SDL.h> // W³¹czamy bibliotekê SDL.
+﻿#include <SDL.h>
 #include <iostream>
 #include <vector>
 #include <SDL_image.h>
@@ -8,12 +8,14 @@
 using namespace std;
 #define predkosc_pocisku 10
 #define rozmiar_pocisku 20
-
+int AniFrame = 0;
 class Alien {
 public:
     int x, y, width, height;
     SDL_Rect rect;
     int alive;
+    int lives;
+    int type;
     Alien()
     {
         this->x = 10;
@@ -22,6 +24,7 @@ public:
         this->height = 30;
         this->rect = { x,y,width,height };
         this->alive = 1;
+        this->lives = 1;
     }
 
     void MoveCoordinates(int nx, int ny)
@@ -38,6 +41,7 @@ public:
     int direction = 1;
     int dead;
     int currentSpeed;
+    int wave=1;
     Enemies()
     {
         this->x = 10;
@@ -53,11 +57,55 @@ public:
     {
         int i = 0;
         this->dead = 0;
+        currentSpeed = 5;
         for (int j = 0; j < (sizeof(tab) / sizeof(tab[0])); j++)
         {
             tab[j].MoveCoordinates(x, y);
             tab[j].alive = 1;
-            x = x + 40; //40
+            switch (wave)
+            {
+            case 1:
+                tab[j].type = 1;
+                break;
+            case 2:
+                tab[j].type = 2;
+                break;
+            case 3:
+                tab[j].type = 3;
+                break;
+            case 4:
+                tab[j].type = 4;
+                break;
+            case 5:
+                tab[j].type = 5;
+                break;
+            case 6:
+                tab[j].type = 6;
+                break;
+                
+            }
+            
+            switch (tab[j].type) {
+            case 1:
+                tab[j].lives = 1;
+                break;
+            case 2:
+                tab[j].lives = 2;
+                break;
+            case 3:
+                tab[j].lives = 3;
+                break;
+            case 4:
+                tab[j].lives = 4;
+                break;
+            case 5:
+                tab[j].lives = 5;
+                break;
+            case 6:
+                tab[j].lives = 6;
+                break;
+            }
+            x = x + 40;
             i++;
             if (i == 10) {
                 y += 40;
@@ -68,7 +116,6 @@ public:
     }
     void Move()
     {
-        //int direction = 1;
         int change = 0;
         int speed = currentSpeed;
         int alien_maxX = 0;
@@ -85,7 +132,6 @@ public:
                 if (IndexX < alien_minX)alien_minX = IndexX;
                 if (IndexY > alien_maxY)alien_maxY = IndexY;
                 if (IndexY < alien_minY)alien_minY = IndexY;
-                //alien_alive_amount++;
             }
         }
         if (tab[alien_maxX].x + tab[alien_maxX].width >= 800)
@@ -98,6 +144,7 @@ public:
         {
             direction = 1;
             change = 1;
+
         }
         for (int j = 0; j < (sizeof(tab) / sizeof(tab[0])); j++)
         {
@@ -121,11 +168,11 @@ public:
         height = rozmiar_pocisku;
         rect = { x, y, width, height };
         active = false;
-        
+
     }
 
     void Shoot(int playerX, int playerY) {
-        x = (playerX + (width / 2)) -5; // pocisk na środku naszego pleyera
+        x = (playerX + (width / 2)) - 5; // pocisk na środku naszego pleyera
         y = playerY;
         rect = { x, y, width, height };
         active = true;
@@ -153,7 +200,7 @@ public:
     SDL_Rect rect;
     vector<Bullet> bullets;
     int currentBullet;
-    Uint32 lastWeaponFire; ///////////////////////////testy
+    Uint32 lastWeaponFire;
     Player()
     {
         this->x = 10;
@@ -162,7 +209,7 @@ public:
         this->height = 30;
         this->rect = { x,y,width,height };
         this->score = 0;
-        lastWeaponFire = SDL_GetTicks(); ///////////////////////////testy
+        lastWeaponFire = SDL_GetTicks();
     }
     void MoveCoordinates(int nx, int ny)
     {
@@ -178,7 +225,7 @@ public:
     }
     void MoveRight()
     {
-        if (x + width < 800) //w przyszlosci dac rozdzielczosc nie sztywna wartosc
+        if (x + width < 800)
             x = x + 10;
         this->rect = { x,y,width,height };
     }
@@ -201,9 +248,13 @@ public:
     Player p1;
     Enemies e1;
     BitmapHandler bh1 = BitmapHandler();
-    SDL_Texture* Tex1; //= bh1.LoadTexture("Textury/alien1.png", renderer);
-    SDL_Texture* Tex2; //= bh1.LoadTexture("Textury/alien2.png", renderer);
+    SDL_Texture* Tex1;
+    SDL_Texture* Tex2;
     SDL_Texture* Tex3;
+    SDL_Texture* Tex4;
+    SDL_Texture* spodek;
+    SDL_Texture* xeno;
+    SDL_Texture* mario;
     SDL_Texture* Pause;
     SDL_Texture* GameOver;
     SDL_Texture* Start;
@@ -212,8 +263,9 @@ public:
     AnimatedObject a1 = AnimatedObject();
     BitmapObject b1 = BitmapObject();
     SpriteObject s1 = SpriteObject();
-
+    SDL_Texture** Animation2;
     SDL_Texture* BulletTexture;
+
     /////////////////////
     //fpsy od
     const int FPS = 30;
@@ -223,15 +275,8 @@ public:
     float old_time = SDL_GetTicks();
     // fps do oraz w while
     bool isRunning = true;
-    //SDL_Event event;
-    ///////////////////
-   /// SDL_Rect Testa;/////////////////////////testy
-   // int tmpTime=0;/////////////////////////testy
-
 
     Engine(int x, int y) {
-       
-        //this->Testa= { 10,300,25,25 };/////////////////////////testy
         this->Width = x;
         this->Height = y;
         p1.MoveCoordinates(this->Width / 2, this->Height - (p1.height + 5));
@@ -256,7 +301,12 @@ public:
                         if (CheckCollision(p1.bullets[i], e1.tab[j])) {
                             // Kolizja między pociskiem a obcym statkiem kosmicznym.
                             p1.bullets[i].active = false;
-                            e1.tab[j].alive = false;
+                            e1.tab[j].lives--;
+
+                            if (e1.tab[j].lives <= 0) {
+                                e1.tab[j].alive = false;
+                                e1.dead++;
+                            }
                         }
                     }
                 }
@@ -272,7 +322,6 @@ public:
             bullet.y < alien.y + alien.height &&
             bullet.y + bullet.height > alien.y) {
             p1.score++;
-            e1.dead++;
             return true; // Kolizja.
         }
         return false; // Brak kolizji.
@@ -285,7 +334,7 @@ public:
                     player.x + player.width > e1.tab[j].x &&
                     player.y < e1.tab[j].y + e1.tab[j].height &&
                     player.y + player.height > e1.tab[j].y) {
-
+                    
                     GameState = { GAMEOVER };
                     //gameover
                 }
@@ -298,7 +347,11 @@ public:
         if (e1.dead == (sizeof(e1.tab) / sizeof(e1.tab[0])))
         {
             e1.BasePosition();
+            e1.wave++;
+            if (e1.wave >= 6)
+                e1.wave = 6;
             e1.IntEnemies();
+
         }
     }
 
@@ -306,18 +359,6 @@ public:
     //Pętla główna gry, wyświetlanie okna
 
     void Run() {
-        ///// wywalone do góry
-        //     ||
-        /////  \/
-        /*//fpsy od
-        const int FPS = 30;
-        const int frameDelay = 1000 / FPS;
-        Uint32 frameStart;
-        int frameTime;
-        float old_time = SDL_GetTicks();
-        // fps do oraz w while
-        bool isRunning = true;
-        //SDL_Event event;*/
         Background1 = bh1.LoadTexture("Textury/Background1.png", renderer);
         Start = bh1.LoadTexture("Textury/Start.png", renderer);
         Pause = bh1.LoadTexture("Textury/Pause.png", renderer);
@@ -326,20 +367,19 @@ public:
         Tex1 = bh1.LoadTexture("Textury/alien1.png", renderer);
         Tex2 = bh1.LoadTexture("Textury/alien2.png", renderer);
         Tex3 = bh1.LoadTexture("Textury/pocisk.png", renderer);
+        Tex4 = bh1.LoadTexture("Textury/alien3.png", renderer);
+        spodek = bh1.LoadTexture("Textury/alien5.png", renderer);
+        xeno = bh1.LoadTexture("Textury/alien4.png", renderer);
+        mario = bh1.LoadTexture("Textury/mario.png", renderer);
 
-
+        Animation2 = bh1.LoadAnimation("Animacja1/move%d.png", renderer, 6);
+        
         while (isRunning) {
 
             switch (GameState) {
             case START: {
-                /*Background1 = bh1.LoadTexture("Textury/Background1.png", renderer);
-                Start = bh1.LoadTexture("Textury/Start.png", renderer);*/
                 SDL_Rect back = { 0,0,Width,Height };
                 SDL_Rect tmp = { 300,100,200,300 };
-                // SDL_Rect tmp1 = { 200,100,50,50 };
-                 // Draw();
-                // SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-                // SDL_RenderFillRect(renderer, &tmp);
                 SDL_RenderCopy(renderer, Background1, NULL, &back);
                 SDL_RenderCopy(renderer, Start, NULL, &tmp);
                 if (SDLK_TAB == event.key.keysym.sym)
@@ -347,27 +387,20 @@ public:
                 break;
             }
             case PAUSE: {
-                //Background2 = bh1.LoadTexture("Textury/Background2.png", renderer);
-                /*Pause = bh1.LoadTexture("Textury/Pause.png", renderer);*/
                 SDL_Rect back = { 0,0,Width,Height };
                 SDL_Rect tmp = { 100,100,50,50 };
                 Draw();
-                //SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-                //SDL_RenderFillRect(renderer, &tmp);
-                //SDL_RenderCopy(renderer, Background2, NULL, &back);
+                RenderScore();
                 SDL_RenderCopy(renderer, Pause, NULL, &tmp);
                 if (SDLK_TAB == event.key.keysym.sym)
                     GameState = RUN;
                 break;
             }
             case RUN: {
-                /*Background2 = bh1.LoadTexture("Textury/Background2.png", renderer);
-                SDL_Rect back = { 0,0,Width,Height };
-                SDL_RenderCopy(renderer, Background2, NULL, &back);*/
                 frameStart = SDL_GetTicks();
                 MovementHandle();
                 e1.Move();
-                
+
                 DrawBullets();
                 UpdateBullets();
                 Draw();
@@ -381,35 +414,29 @@ public:
             }
             case GAMEOVER:
             {
-                /*e1.BasePosition();
-                e1.IntEnemies();
-                p1.score = 0;*/
-                /*GameOver = bh1.LoadTexture("Textury/GameOver.png", renderer);*/
                 Draw();
+                RenderScore();
                 SDL_Rect tmp = { 300,100,200,300 };
                 SDL_RenderCopy(renderer, GameOver, NULL, &tmp);
-                // SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-                 //SDL_RenderFillRect(renderer, &tmp);
                 if (SDLK_TAB == event.key.keysym.sym) {
                     e1.BasePosition();
+                    e1.wave = 1;
                     e1.IntEnemies();
                     p1.score = 0;
                     p1.bullets.clear();
                     GameState = RUN;
+                    
                 }
                 break;
             }
             }
 
             //time function od
-
             frameTime = SDL_GetTicks() - frameStart;
             if (frameDelay > frameTime)
             {
-                // tmpTime = frameDelay - frameTime;
                 SDL_Delay(frameDelay - frameTime);
             } // do
-           // Testa.x += 1 * (frameDelay - frameTime);/////////////////////////testy
             SDL_PollEvent(&event);
             if (event.type == SDL_QUIT) {
                 isRunning = false;
@@ -436,10 +463,7 @@ public:
     void DrawBullets() {
         for (int i = 0; i < p1.bullets.size(); i++) {
             if (p1.bullets[i].active) {
-                //SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
-                //SDL_RenderFillRect(renderer, &p1.bullets[i].rect);
                 p1.bullets[i].Draw(renderer, BulletTexture);
-                //SDL_RenderCopy(renderer, p1.bullets[i].Texture, NULL, &p1.bullets[i].rect);
             }
         }
     }
@@ -447,24 +471,33 @@ public:
 
     void Draw()
     {
-        /*Background2 = bh1.LoadTexture("Textury/Background2.png", renderer);*/
         SDL_Rect back = { 0,0,Width,Height };
         SDL_RenderCopy(renderer, Background2, NULL, &back);
         DrawBullets();
-        /*Tex1 = bh1.LoadTexture("Textury/alien1.png", renderer);
-        Tex2 = bh1.LoadTexture("Textury/alien2.png", renderer);*/
-        //Player p1(this->Width/2,this->Height-25);
         SDL_SetRenderDrawColor(renderer, 255, 100, 0, 255);
-        //SDL_RenderCopy(renderer, Tex1, NULL, &p1.rect);
-        //s1.Draw(renderer, Tex1, p1.rect);
-        //SDL_RenderFillRect(renderer, &p1.rect);
-        SDL_RenderCopy(renderer, Tex2, NULL, &p1.rect);
-        //SDL_RenderFillRect(renderer, &Testa);/////////////////////////testy
+        a1.animate(renderer, Animation2, p1.rect, AniFrame);
+
         for (int i = 0; i < (sizeof(e1.tab) / sizeof(e1.tab[0])); i++)
         {
-            if (e1.tab[i].alive == 1)
-                SDL_RenderCopy(renderer, Tex1, NULL, &e1.tab[i].rect);
-            // SDL_RenderFillRect(renderer, &e1.tab[i].rect);
+            
+            if (e1.tab[i].alive == 1) 
+            { 
+                switch (e1.tab[i].type) {
+                case 1:  SDL_RenderCopy(renderer, Tex1, NULL, &e1.tab[i].rect);
+                    break;
+                case 2:  SDL_RenderCopy(renderer, Tex2, NULL, &e1.tab[i].rect);
+                    break;
+                case 3:  SDL_RenderCopy(renderer, Tex4, NULL, &e1.tab[i].rect);
+                    break;
+                case 4:  SDL_RenderCopy(renderer, xeno, NULL, &e1.tab[i].rect);
+                    break;
+                case 5:  SDL_RenderCopy(renderer, spodek, NULL, &e1.tab[i].rect);
+                    break;
+                case 6:  SDL_RenderCopy(renderer, mario, NULL, &e1.tab[i].rect);
+                    break;
+
+                }
+            }
         }
 
 
@@ -473,15 +506,30 @@ public:
     {
         const Uint8* state = SDL_GetKeyboardState(NULL);
 
-        if (state[SDL_SCANCODE_LEFT]) {
+        if (state[SDL_SCANCODE_LEFT])
+        {
             p1.MoveLeft();
+            if (AniFrame == 5) //index tablicy do animacji
+            {
+                AniFrame = 0;
+            }
+            else AniFrame++;
         }
-        if (state[SDL_SCANCODE_RIGHT]) {
+        else {};
+
+        if (state[SDL_SCANCODE_RIGHT])
+        {
             p1.MoveRight();
+            if (AniFrame == 5) //index tablicy do animacji
+            {
+                AniFrame = 0;
+            }
+            else AniFrame++;
         }
+        else {};
 
         // Dodaj obsługę innych klawiszy według potrzeb.
-        if (state[SDL_SCANCODE_SPACE] && SDL_GetTicks() > p1.lastWeaponFire + 500) { ///to 500 to opóżnienie w ms
+        if (state[SDL_SCANCODE_SPACE] && SDL_GetTicks() > p1.lastWeaponFire + 100) { ///to 500 to opóżnienie w ms
             p1.Shoot();
             p1.lastWeaponFire = SDL_GetTicks();
         }
@@ -490,7 +538,7 @@ public:
     }
 
     void RenderScore() {
-        TTF_Font* font = TTF_OpenFont("C:/Labolatorium_grafika/Space/Space/arial.ttf", 24); 
+        TTF_Font* font = TTF_OpenFont("C:/Labolatorium_grafika/Space/Space/arial.ttf", 24);
         if (!font) {
             cerr << "Failed to load font: " << TTF_GetError() << endl;
             return;
