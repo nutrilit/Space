@@ -1,0 +1,83 @@
+\doxysection{Bitmap\+Object Class Reference}
+\hypertarget{class_bitmap_object}{}\label{class_bitmap_object}\index{BitmapObject@{BitmapObject}}
+
+
+Klasa reprezentuj¹ca obiekt graficzny obs³uguj¹cy bitmapy.  
+
+
+
+
+{\ttfamily \#include $<$Bitmap\+Object.\+h$>$}
+
+Inheritance diagram for Bitmap\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_bitmap_object}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_bitmap_object_a336709e3a6367dee4078b9a4965225df}{Draw}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}Texture, SDL\+\_\+\+Rect \&rect)
+\begin{DoxyCompactList}\small\item\em Funkcja rysuj¹ca obiekt na podstawie tekstury i prostok¹ta. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_bitmap_object_ada0d39072975ff95aba904dc0b33ae87}{Draw}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Rect rect1, SDL\+\_\+\+Color color)
+\begin{DoxyCompactList}\small\item\em Funkcja rysuj¹ca prostok¹t o okreœlonym kolorze. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_bitmap_handler}{Bitmap\+Handler}}}
+\begin{DoxyCompactItemize}
+\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_bitmap_handler_a71eb90c8cb82c99182b9d4a96fa8525a}{Load\+Texture}} (const char \texorpdfstring{$\ast$}{*}Name\+Of\+Texture, SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer)
+\begin{DoxyCompactList}\small\item\em £aduje pojedyncz¹ teksturê z pliku graficznego. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_bitmap_handler_a3d909ee835ef24cf06ec18cd0fb6347b}{Load\+Animation}} (const char \texorpdfstring{$\ast$}{*}Name\+Of\+Texture, SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, int Frames)
+\begin{DoxyCompactList}\small\item\em £aduje animacjê jako tablicê wskaŸników SDL\+\_\+\+Texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentuj¹ca obiekt graficzny obs³uguj¹cy bitmapy. 
+
+Klasa ta dziedziczy po \doxylink{class_bitmap_handler}{Bitmap\+Handler}, dostarczaj¹cej funkcji obs³ugi obrazów. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_bitmap_object_ada0d39072975ff95aba904dc0b33ae87}\label{class_bitmap_object_ada0d39072975ff95aba904dc0b33ae87} 
+\index{BitmapObject@{BitmapObject}!Draw@{Draw}}
+\index{Draw@{Draw}!BitmapObject@{BitmapObject}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Bitmap\+Object\+::\+Draw (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{SDL\+\_\+\+Rect}]{rect1,  }\item[{SDL\+\_\+\+Color}]{color }\end{DoxyParamCaption})}
+
+
+
+Funkcja rysuj¹ca prostok¹t o okreœlonym kolorze. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & WskaŸnik do obiektu klasy SDL\+\_\+\+Renderer, na którym ma byæ rysowany prostok¹t. \\
+\hline
+{\em rect1} & Prostok¹t okreœlaj¹cy pozycjê i rozmiar prostok¹ta na ekranie. \\
+\hline
+{\em color} & Kolor prostok¹ta, okreœlony jako obiekt klasy SDL\+\_\+\+Color.\\
+\hline
+\end{DoxyParams}
+Funkcja ta rysuje prostok¹t o zadanym kolorze na ekranie. \Hypertarget{class_bitmap_object_a336709e3a6367dee4078b9a4965225df}\label{class_bitmap_object_a336709e3a6367dee4078b9a4965225df} 
+\index{BitmapObject@{BitmapObject}!Draw@{Draw}}
+\index{Draw@{Draw}!BitmapObject@{BitmapObject}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Bitmap\+Object\+::\+Draw (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{Texture,  }\item[{SDL\+\_\+\+Rect \&}]{rect }\end{DoxyParamCaption})}
+
+
+
+Funkcja rysuj¹ca obiekt na podstawie tekstury i prostok¹ta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & WskaŸnik do obiektu klasy SDL\+\_\+\+Renderer, na którym ma byæ rysowany obiekt bitmapowy. \\
+\hline
+{\em Texture} & Tekstura, któr¹ ma u¿yæ obiekt do rysowania. \\
+\hline
+{\em rect} & Prostok¹t okreœlaj¹cy pozycjê i rozmiar obiektu na ekranie.\\
+\hline
+\end{DoxyParams}
+Funkcja ta rysuje obiekt bitmapowy na ekranie, korzystaj¹c z danej tekstury i prostok¹ta. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Bitmap\+Object.\+h\item 
+Bitmap\+Object.\+cpp\end{DoxyCompactItemize}

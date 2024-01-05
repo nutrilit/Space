@@ -1,0 +1,208 @@
+\doxysection{Engine Class Reference}
+\hypertarget{class_engine}{}\label{class_engine}\index{Engine@{Engine}}
+
+
+Klasa reprezentująca silnik gry.  
+
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_engine_a27aa119117bd97a444af8fd01f594787}\label{class_engine_a27aa119117bd97a444af8fd01f594787} 
+enum {\bfseries Game\+State\+Type} \{ {\bfseries PAUSE}
+, {\bfseries RUN}
+, {\bfseries GAMEOVER}
+, {\bfseries START}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_engine_aac5c92caedb509dc2267582c34a0348c}{Engine}} (int x, int y)
+\begin{DoxyCompactList}\small\item\em Konstruktor klasy \doxylink{class_engine}{Engine}. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a27398a2854c16fa0dfa7b58246ab141e}\label{class_engine_a27398a2854c16fa0dfa7b58246ab141e} 
+void {\bfseries Check\+Collisions} ()
+\begin{DoxyCompactList}\small\item\em Metoda sprawdzająca kolizje między pociskiem a obcym statkiem. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a9fb5a4e2cca8a50410d218d45a9737c1}\label{class_engine_a9fb5a4e2cca8a50410d218d45a9737c1} 
+bool {\bfseries Check\+Collision} (const \mbox{\hyperlink{class_bullet}{Bullet}} \&bullet, const \mbox{\hyperlink{class_alien}{Alien}} \&alien)
+\item 
+void \mbox{\hyperlink{class_engine_aabee750987a6068e3ee1503ec3952cd2}{Check\+Collisions}} (const \mbox{\hyperlink{class_player}{Player}} \&player)
+\begin{DoxyCompactList}\small\item\em Metoda sprawdzająca kolizje między graczem a obcymi statkami. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a999a71abc68fa5c0b11f8c37c8986d4e}\label{class_engine_a999a71abc68fa5c0b11f8c37c8986d4e} 
+void {\bfseries Alien\+Reinforcement} ()
+\begin{DoxyCompactList}\small\item\em Metoda wzmocnienia obcych statków po zniszczeniu grupy. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_af4c789fb939a0870426c698a5124a0ee}\label{class_engine_af4c789fb939a0870426c698a5124a0ee} 
+void {\bfseries Run} ()
+\begin{DoxyCompactList}\small\item\em Metoda uruchamiająca główną pętlę gry. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a6c94c6f1aa33ce38f08aaa554ecc113d}\label{class_engine_a6c94c6f1aa33ce38f08aaa554ecc113d} 
+void {\bfseries Update\+Bullets} ()
+\begin{DoxyCompactList}\small\item\em Metoda aktualizująca pozycję i stan wszystkich pocisków gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a0c4cde88cee3297f62436ef4e437f191}\label{class_engine_a0c4cde88cee3297f62436ef4e437f191} 
+void {\bfseries Draw\+Bullets} ()
+\begin{DoxyCompactList}\small\item\em Metoda rysująca wszystkie pociski gracza na ekranie. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_ac098ab29cbcd7352879d0101aaf4b827}\label{class_engine_ac098ab29cbcd7352879d0101aaf4b827} 
+void {\bfseries Draw} ()
+\begin{DoxyCompactList}\small\item\em Metoda rysująca elementy gry na ekranie. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_engine_a4bc8b2334b6edb6b4dfc6f4f9de7a190}{Movement\+Handle}} ()
+\begin{DoxyCompactList}\small\item\em Metoda obsługująca ruch gracza i strzały. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_ae10dd3f204ef57e0d2e8c1d2f7f130a1}\label{class_engine_ae10dd3f204ef57e0d2e8c1d2f7f130a1} 
+void {\bfseries Render\+Score} ()
+\begin{DoxyCompactList}\small\item\em Metoda rysująca aktualny wynik gracza na ekranie. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a8ef7030a089ecb30bbfcb9e43094717a}\label{class_engine_a8ef7030a089ecb30bbfcb9e43094717a} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}\+Engine} ()
+\begin{DoxyCompactList}\small\item\em Destruktor klasy \doxylink{class_engine}{Engine}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_engine_a259fae393fddd68428a2c504cf633670}\label{class_engine_a259fae393fddd68428a2c504cf633670} 
+SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*} {\bfseries window}
+\begin{DoxyCompactList}\small\item\em Okno gry. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_ad2484a396a99c02dc8c8b273bd189a7b}\label{class_engine_ad2484a396a99c02dc8c8b273bd189a7b} 
+SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*} {\bfseries renderer}
+\begin{DoxyCompactList}\small\item\em Renderer SDL. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_ad7ff6822662970af26d185377a63911c}\label{class_engine_ad7ff6822662970af26d185377a63911c} 
+SDL\+\_\+\+Event {\bfseries event}
+\begin{DoxyCompactList}\small\item\em Zdarzenia SDL. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_af43d433471b91a1eb7fd80d892038342}\label{class_engine_af43d433471b91a1eb7fd80d892038342} 
+int {\bfseries Width}
+\item 
+\Hypertarget{class_engine_ad306a131ee12bd0c8bc6b96c22d45491}\label{class_engine_ad306a131ee12bd0c8bc6b96c22d45491} 
+int {\bfseries Height}
+\begin{DoxyCompactList}\small\item\em Szerokość i wysokość okna gry. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a47d5501d145daf0f3e76bf6771bdd31b}\label{class_engine_a47d5501d145daf0f3e76bf6771bdd31b} 
+Game\+State\+Type {\bfseries Game\+State} = START
+\begin{DoxyCompactList}\small\item\em Aktualny stan gry. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a5e5ed4a9989b36149d83350533a8ef3c}\label{class_engine_a5e5ed4a9989b36149d83350533a8ef3c} 
+\mbox{\hyperlink{class_player}{Player}} {\bfseries p1}
+\begin{DoxyCompactList}\small\item\em Obiekt gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a229422855a11ea26c94e4f6073af87bb}\label{class_engine_a229422855a11ea26c94e4f6073af87bb} 
+\mbox{\hyperlink{class_enemies}{Enemies}} {\bfseries e1}
+\begin{DoxyCompactList}\small\item\em Obiekt grupy obcych statków. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a62d942ce8039c4eb6ffc5abfcebb2b63}\label{class_engine_a62d942ce8039c4eb6ffc5abfcebb2b63} 
+\mbox{\hyperlink{class_bitmap_handler}{Bitmap\+Handler}} {\bfseries bh1} = \mbox{\hyperlink{class_bitmap_handler}{Bitmap\+Handler}}()
+\begin{DoxyCompactList}\small\item\em Obiekt do obsługi bitmap. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_ac7ab65438c03cdb3970c0b1635eae1f0}\label{class_engine_ac7ab65438c03cdb3970c0b1635eae1f0} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries Tex1}
+\begin{DoxyCompactList}\small\item\em Tekstura1. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a05a9682e35c671832d89c2ab9cce40df}\label{class_engine_a05a9682e35c671832d89c2ab9cce40df} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries Tex2}
+\begin{DoxyCompactList}\small\item\em Tekstura2. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_acc584ff63884f6df20c070386cefc978}\label{class_engine_acc584ff63884f6df20c070386cefc978} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries Tex3}
+\begin{DoxyCompactList}\small\item\em Tekstura3. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_ac5192bfb33eb8cc550bb31fca704f3f8}\label{class_engine_ac5192bfb33eb8cc550bb31fca704f3f8} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries Tex4}
+\begin{DoxyCompactList}\small\item\em Tekstura4. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_adc1aa9592c31e1804e4881c21c602eef}\label{class_engine_adc1aa9592c31e1804e4881c21c602eef} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries spodek}
+\begin{DoxyCompactList}\small\item\em Tekstura5. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a771bdd2ea08847b67b9bcf797a43a9b9}\label{class_engine_a771bdd2ea08847b67b9bcf797a43a9b9} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries xeno}
+\begin{DoxyCompactList}\small\item\em Tekstura6. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a5e969786592ad761d82245f73b37b10c}\label{class_engine_a5e969786592ad761d82245f73b37b10c} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries mario}
+\begin{DoxyCompactList}\small\item\em Tekstura7. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a158e9abe02ef26b68ed9bb617d11512c}\label{class_engine_a158e9abe02ef26b68ed9bb617d11512c} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries Pause}
+\begin{DoxyCompactList}\small\item\em Tekstura8. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_aaee02af8f7598037c9e3764967f217e6}\label{class_engine_aaee02af8f7598037c9e3764967f217e6} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries Game\+Over}
+\begin{DoxyCompactList}\small\item\em Tekstura9. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a3f83853b008e0fd34ce9faa220ebdfd5}\label{class_engine_a3f83853b008e0fd34ce9faa220ebdfd5} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries Start}
+\begin{DoxyCompactList}\small\item\em Tekstura10. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_af91129877a50721586a0815b8d1a9641}\label{class_engine_af91129877a50721586a0815b8d1a9641} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries Background1}
+\begin{DoxyCompactList}\small\item\em Tekstura11. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_ad000f77241fc568e79201de959bc7152}\label{class_engine_ad000f77241fc568e79201de959bc7152} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries Background2}
+\begin{DoxyCompactList}\small\item\em Tekstura12. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_aad0594f77717e44984c1f0ec3954f317}\label{class_engine_aad0594f77717e44984c1f0ec3954f317} 
+\mbox{\hyperlink{class_animated_object}{Animated\+Object}} {\bfseries a1} = \mbox{\hyperlink{class_animated_object}{Animated\+Object}}()
+\begin{DoxyCompactList}\small\item\em Animowany obiekt. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_aba6da6d35071c33c07db6ee500c6ba1e}\label{class_engine_aba6da6d35071c33c07db6ee500c6ba1e} 
+\mbox{\hyperlink{class_bitmap_object}{Bitmap\+Object}} {\bfseries b1} = \mbox{\hyperlink{class_bitmap_object}{Bitmap\+Object}}()
+\begin{DoxyCompactList}\small\item\em Obiekt bitmapowy. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a4a4a4138a51ae72b8f73e7327ea81bd1}\label{class_engine_a4a4a4138a51ae72b8f73e7327ea81bd1} 
+\mbox{\hyperlink{class_sprite_object}{Sprite\+Object}} {\bfseries s1} = \mbox{\hyperlink{class_sprite_object}{Sprite\+Object}}()
+\begin{DoxyCompactList}\small\item\em Obiekt sprite\textquotesingle{}a. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a6cd3a5edfb8b935d813fadc905904229}\label{class_engine_a6cd3a5edfb8b935d813fadc905904229} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} {\bfseries Animation2}
+\begin{DoxyCompactList}\small\item\em Animacja 2. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_a0bfebd5027b50cea910ea7d4c78c2ec9}\label{class_engine_a0bfebd5027b50cea910ea7d4c78c2ec9} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries Bullet\+Texture}
+\begin{DoxyCompactList}\small\item\em Tekstura dla pocisku. \end{DoxyCompactList}\item 
+\Hypertarget{class_engine_ad943a91bad28c6340306c703f52441ae}\label{class_engine_ad943a91bad28c6340306c703f52441ae} 
+const int {\bfseries FPS} = 30
+\item 
+\Hypertarget{class_engine_a8c37bda255b236494772310561055826}\label{class_engine_a8c37bda255b236494772310561055826} 
+const int {\bfseries frame\+Delay} = 1000 / FPS
+\item 
+\Hypertarget{class_engine_a9cccfd05a45339e4e55399cba310f4b9}\label{class_engine_a9cccfd05a45339e4e55399cba310f4b9} 
+Uint32 {\bfseries frame\+Start}
+\item 
+\Hypertarget{class_engine_acb27f1c989332a0ce9a0095d46c0c83b}\label{class_engine_acb27f1c989332a0ce9a0095d46c0c83b} 
+int {\bfseries frame\+Time}
+\item 
+\Hypertarget{class_engine_a32e3cf968bbd296c75dd57ca2507544c}\label{class_engine_a32e3cf968bbd296c75dd57ca2507544c} 
+float {\bfseries old\+\_\+time} = SDL\+\_\+\+Get\+Ticks()
+\item 
+\Hypertarget{class_engine_a3297bab216a17dae935909a63b889379}\label{class_engine_a3297bab216a17dae935909a63b889379} 
+bool {\bfseries is\+Running} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentująca silnik gry. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_engine_aac5c92caedb509dc2267582c34a0348c}\label{class_engine_aac5c92caedb509dc2267582c34a0348c} 
+\index{Engine@{Engine}!Engine@{Engine}}
+\index{Engine@{Engine}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{Engine()}{Engine()}}
+{\footnotesize\ttfamily Engine\+::\+Engine (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Konstruktor klasy \doxylink{class_engine}{Engine}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Szerokość okna gry. \\
+\hline
+{\em y} & Wysokość okna gry. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_engine_aabee750987a6068e3ee1503ec3952cd2}\label{class_engine_aabee750987a6068e3ee1503ec3952cd2} 
+\index{Engine@{Engine}!CheckCollisions@{CheckCollisions}}
+\index{CheckCollisions@{CheckCollisions}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{CheckCollisions()}{CheckCollisions()}}
+{\footnotesize\ttfamily void Engine\+::\+Check\+Collisions (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_player}{Player}} \&}]{player }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Metoda sprawdzająca kolizje między graczem a obcymi statkami. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Referencja do obiektu gracza. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_engine_a4bc8b2334b6edb6b4dfc6f4f9de7a190}\label{class_engine_a4bc8b2334b6edb6b4dfc6f4f9de7a190} 
+\index{Engine@{Engine}!MovementHandle@{MovementHandle}}
+\index{MovementHandle@{MovementHandle}!Engine@{Engine}}
+\doxysubsubsection{\texorpdfstring{MovementHandle()}{MovementHandle()}}
+{\footnotesize\ttfamily void Engine\+::\+Movement\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Metoda obsługująca ruch gracza i strzały. 
+
+to 500 to opóżnienie w ms
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Projekt\+Graf.\+cpp\end{DoxyCompactItemize}

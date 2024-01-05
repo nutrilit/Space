@@ -1,0 +1,64 @@
+\doxysection{Animated\+Object Class Reference}
+\hypertarget{class_animated_object}{}\label{class_animated_object}\index{AnimatedObject@{AnimatedObject}}
+
+
+Klasa reprezentuj¹ca obiekt animowany.  
+
+
+
+
+{\ttfamily \#include $<$Animated\+Object.\+h$>$}
+
+Inheritance diagram for Animated\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_animated_object}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_animated_object_a8cb542394d4ae99c5a3b7e86f41a6ed1}{animate}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Animation, SDL\+\_\+\+Rect \&rect, int i)
+\begin{DoxyCompactList}\small\item\em Wirtualna funkcja do animowania obiektu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_bitmap_handler}{Bitmap\+Handler}}}
+\begin{DoxyCompactItemize}
+\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_bitmap_handler_a71eb90c8cb82c99182b9d4a96fa8525a}{Load\+Texture}} (const char \texorpdfstring{$\ast$}{*}Name\+Of\+Texture, SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer)
+\begin{DoxyCompactList}\small\item\em £aduje pojedyncz¹ teksturê z pliku graficznego. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_bitmap_handler_a3d909ee835ef24cf06ec18cd0fb6347b}{Load\+Animation}} (const char \texorpdfstring{$\ast$}{*}Name\+Of\+Texture, SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, int Frames)
+\begin{DoxyCompactList}\small\item\em £aduje animacjê jako tablicê wskaŸników SDL\+\_\+\+Texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentuj¹ca obiekt animowany. 
+
+Klasa ta dziedziczy po klasie \doxylink{class_bitmap_handler}{Bitmap\+Handler}, co umo¿liwia korzystanie z funkcji obs³uguj¹cych obrazy. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_animated_object_a8cb542394d4ae99c5a3b7e86f41a6ed1}\label{class_animated_object_a8cb542394d4ae99c5a3b7e86f41a6ed1} 
+\index{AnimatedObject@{AnimatedObject}!animate@{animate}}
+\index{animate@{animate}!AnimatedObject@{AnimatedObject}}
+\doxysubsubsection{\texorpdfstring{animate()}{animate()}}
+{\footnotesize\ttfamily void Animated\+Object\+::animate (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{Animation,  }\item[{SDL\+\_\+\+Rect \&}]{rect,  }\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Wirtualna funkcja do animowania obiektu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & WskaŸnik do obiektu klasy SDL\+\_\+\+Renderer, na którym ma byæ rysowany obiekt animowany. \\
+\hline
+{\em Animation} & Tablica tekstur reprezentuj¹ca animacjê. \\
+\hline
+{\em rect} & Prostok¹t okreœlaj¹cy pozycjê i rozmiar obiektu animowanego. \\
+\hline
+{\em i} & Numer klatki animacji, któr¹ nale¿y wyœwietliæ.\\
+\hline
+\end{DoxyParams}
+Funkcja ta pozwala na animowanie obiektu poprzez wyœwietlanie kolejnych klatek animacji. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Animated\+Object.\+h\item 
+Animated\+Object.\+cpp\end{DoxyCompactItemize}

@@ -1,4 +1,9 @@
-﻿#include <SDL.h>
+﻿/**
+ * @file main.cpp
+ * @brief Główny plik programu Space Intruders.
+ */
+
+#include <SDL.h>
 #include <iostream>
 #include <vector>
 #include <SDL_image.h>
@@ -6,16 +11,23 @@
 #include <SDL_ttf.h>
 #include <string>
 using namespace std;
-#define predkosc_pocisku 10
-#define rozmiar_pocisku 20
-int AniFrame = 0;
+#define predkosc_pocisku 10 ///< Prędkość poruszania się pocisku.
+#define rozmiar_pocisku 20 ///< Rozmiar pocisku.
+int AniFrame = 0; ///< Aktualna klatka animacji.
+/**
+ * @class Alien
+ * @brief Klasa reprezentująca obcego statku kosmicznego.
+ */
 class Alien {
 public:
-    int x, y, width, height;
-    SDL_Rect rect;
-    int alive;
-    int lives;
-    int type;
+    int x, y, width, height;  ///< Współrzędne, szerokość i wysokość obcego statku.
+    SDL_Rect rect;  ///< Prostokąt reprezentujący obcego statku.
+    int alive; ///< Flaga określająca, czy statek jest żywy.
+    int lives; ///< Ilość żyć obcego statku.
+    int type; ///< Typ obcego statku.
+    /**
+ * @brief Konstruktor klasy Alien.
+ */
     Alien()
     {
         this->x = 10;
@@ -26,7 +38,11 @@ public:
         this->alive = 1;
         this->lives = 1;
     }
-
+    /**
+ * @brief Metoda ustawiająca nowe współrzędne obcego statku.
+ * @param nx Nowa współrzędna x.
+ * @param ny Nowa współrzędna y.
+ */
     void MoveCoordinates(int nx, int ny)
     {
         this->x = nx;
@@ -34,25 +50,38 @@ public:
         this->rect = { x,y,width,height };
     }
 };
+/**
+ * @class Enemies
+ * @brief Klasa reprezentująca grupę obcych statków kosmicznych.
+ */
 class Enemies {
 public:
     Alien tab[40];
-    int x, y;
-    int direction = 1;
-    int dead;
-    int currentSpeed;
-    int wave=1;
+    int x, y; ///< Współrzędne grupy obcych statków.
+    int direction = 1; ///< Kierunek poruszania się grupy obcych statków.
+    int dead; ///< Licznik zniszczonych obcych statków.
+    int currentSpeed; ///< Aktualna prędkość poruszania się grupy obcych statków.
+    int wave=1; ///< Aktualna fala obcych statków.
+    /**
+ * @brief Konstruktor klasy Enemies.
+ */
     Enemies()
     {
         this->x = 10;
         this->y = 10;
         this->currentSpeed = 5;
     }
+    /**
+ * @brief Metoda ustawiająca bazowe pozycje grupy obcych statków.
+ */
     void BasePosition()
     {
         this->x = 10;
         this->y = 10;
     }
+    /**
+ * @brief Metoda inicjalizująca grupę obcych statków.
+ */
     void IntEnemies()
     {
         int i = 0;
@@ -114,6 +143,9 @@ public:
             }
         }
     }
+    /**
+ * @brief Metoda odpowiedzialna za ruch grupy obcych statków.
+ */
     void Move()
     {
         int change = 0;
@@ -155,14 +187,19 @@ public:
         }
     }
 };
-
+/**
+ * @class Bullet
+ * @brief Klasa reprezentująca pocisk gracza.
+ */
 class Bullet {
 public:
-    int x, y, width, height;
-    SDL_Rect rect;
-    bool active;
-    SDL_Texture* Texture; // Dodaj pole do przechowywania tekstury
-
+    int x, y, width, height; ///< Współrzędne, szerokość i wysokość pocisku.
+    SDL_Rect rect; ///< Prostokąt reprezentujący pocisk.
+    bool active; ///< Flaga określająca, czy pocisk jest aktywny.
+    SDL_Texture* Texture; ///< Tekstura pocisku.
+    /**
+ * @brief Konstruktor klasy Bullet.
+ */
     Bullet() {
         width = rozmiar_pocisku;
         height = rozmiar_pocisku;
@@ -170,20 +207,31 @@ public:
         active = false;
 
     }
-
+    /**
+ * @brief Metoda odpowiadająca za strzał pocisku.
+ * @param playerX Współrzędna x gracza.
+ * @param playerY Współrzędna y gracza.
+ */
     void Shoot(int playerX, int playerY) {
         x = (playerX + (width / 2)) - 5; // pocisk na środku naszego pleyera
         y = playerY;
         rect = { x, y, width, height };
         active = true;
     }
-
+    /**
+ * @brief Metoda odpowiadająca za ruch pocisku.
+ */
     void Move() {
         if (active) {
             y -= predkosc_pocisku;
             rect = { x, y, width, height };
         }
     }
+    /**
+ * @brief Metoda odpowiadająca za rysowanie pocisku.
+ * @param renderer Renderer SDL.
+ * @param bulletTexture Tekstura pocisku.
+ */
     void Draw(SDL_Renderer* renderer, SDL_Texture* bulletTexture) {
         if (active) {
             // Use renderer and bulletTexture to draw the bullet
@@ -192,15 +240,22 @@ public:
     }
 };
 
-
+/**
+ * @class Player
+ * @brief Klasa reprezentująca gracza.
+ */
 class Player {
 public:
-    int x, y, width, height;
-    int score;
-    SDL_Rect rect;
-    vector<Bullet> bullets;
-    int currentBullet;
-    Uint32 lastWeaponFire;
+    int x, y, width, height; ///< Współrzędne, szerokość i wysokość gracza.
+    int score; ///< Wynik gracza.
+    SDL_Rect rect; ///< Prostokąt reprezentujący gracza.
+    vector<Bullet> bullets; ///< Wektor przechowujący pociski gracza.
+    int currentBullet; ///< Indeks aktualnego pocisku.
+    Uint32 lastWeaponFire; ///< Czas ostatniego strzału gracza.
+
+    /**
+ * @brief Konstruktor klasy Player.
+ */
     Player()
     {
         this->x = 10;
@@ -211,60 +266,76 @@ public:
         this->score = 0;
         lastWeaponFire = SDL_GetTicks();
     }
+    /**
+ * @brief Metoda ustawiająca nowe współrzędne gracza.
+ * @param nx Nowa współrzędna x.
+ * @param ny Nowa współrzędna y.
+ */
     void MoveCoordinates(int nx, int ny)
     {
         this->x = nx;
         this->y = ny;
         this->rect = { x,y,width,height };
     }
+    /**
+ * @brief Metoda odpowiadająca za ruch gracza w lewo.
+ */
     void MoveLeft()
     {
         if (x > 0)
             x = x - 10;
         this->rect = { x,y,width,height };
     }
+    /**
+ * @brief Metoda odpowiadająca za ruch gracza w prawo.
+ */
     void MoveRight()
     {
         if (x + width < 800)
             x = x + 10;
         this->rect = { x,y,width,height };
     }
-
+    /**
+ * @brief Metoda odpowiadająca za strzał gracza.
+ */
     void Shoot() {
         Bullet newBullet;
         newBullet.Shoot(x, y);
         bullets.push_back(newBullet);
     }
 };
-
+/**
+ * @class Engine
+ * @brief Klasa reprezentująca silnik gry.
+ */
 class Engine {
 public:
-    SDL_Window* window;
-    SDL_Renderer* renderer;
-    SDL_Event event;
-    int Width, Height;
-    enum GameStateType { PAUSE, RUN, GAMEOVER, START };
-    GameStateType GameState = START;
-    Player p1;
-    Enemies e1;
-    BitmapHandler bh1 = BitmapHandler();
-    SDL_Texture* Tex1;
-    SDL_Texture* Tex2;
-    SDL_Texture* Tex3;
-    SDL_Texture* Tex4;
-    SDL_Texture* spodek;
-    SDL_Texture* xeno;
-    SDL_Texture* mario;
-    SDL_Texture* Pause;
-    SDL_Texture* GameOver;
-    SDL_Texture* Start;
-    SDL_Texture* Background1;
-    SDL_Texture* Background2;
-    AnimatedObject a1 = AnimatedObject();
-    BitmapObject b1 = BitmapObject();
-    SpriteObject s1 = SpriteObject();
-    SDL_Texture** Animation2;
-    SDL_Texture* BulletTexture;
+    SDL_Window* window; ///< Okno gry.
+    SDL_Renderer* renderer;///< Renderer SDL.
+    SDL_Event event; ///< Zdarzenia SDL.
+    int Width, Height; ///< Szerokość i wysokość okna gry.
+    enum GameStateType { PAUSE, RUN, GAMEOVER, START }; ///< Enumeracja stanów gry.
+    GameStateType GameState = START; ///< Aktualny stan gry.
+    Player p1; ///< Obiekt gracza.
+    Enemies e1; ///< Obiekt grupy obcych statków.
+    BitmapHandler bh1 = BitmapHandler(); ///< Obiekt do obsługi bitmap.
+    SDL_Texture* Tex1; ///< Tekstura1
+    SDL_Texture* Tex2; ///< Tekstura2
+    SDL_Texture* Tex3; ///< Tekstura3
+    SDL_Texture* Tex4; ///< Tekstura4
+    SDL_Texture* spodek; ///< Tekstura5
+    SDL_Texture* xeno; ///< Tekstura6
+    SDL_Texture* mario; ///< Tekstura7
+    SDL_Texture* Pause; ///< Tekstura8
+    SDL_Texture* GameOver; ///< Tekstura9
+    SDL_Texture* Start; ///< Tekstura10
+    SDL_Texture* Background1; ///< Tekstura11
+    SDL_Texture* Background2; ///< Tekstura12
+    AnimatedObject a1 = AnimatedObject(); ///< Animowany obiekt.
+    BitmapObject b1 = BitmapObject(); ///< Obiekt bitmapowy.
+    SpriteObject s1 = SpriteObject(); ///< Obiekt sprite'a.
+    SDL_Texture** Animation2; ///< Animacja 2.
+    SDL_Texture* BulletTexture; ///< Tekstura dla pocisku.
 
     /////////////////////
     //fpsy od
@@ -275,7 +346,11 @@ public:
     float old_time = SDL_GetTicks();
     // fps do oraz w while
     bool isRunning = true;
-
+    /**
+ * @brief Konstruktor klasy Engine.
+ * @param x Szerokość okna gry.
+ * @param y Wysokość okna gry.
+ */
     Engine(int x, int y) {
         this->Width = x;
         this->Height = y;
@@ -293,6 +368,9 @@ public:
         }
         BulletTexture = bh1.LoadTexture("Textury/pocisk.png", renderer);
     }
+    /**
+     * @brief Metoda sprawdzająca kolizje między pociskiem a obcym statkiem.
+     */
     void CheckCollisions() {
         for (int i = 0; i < p1.bullets.size(); i++) {
             if (p1.bullets[i].active) {
@@ -314,7 +392,6 @@ public:
         }
     }
 
-
     bool CheckCollision(const Bullet& bullet, const Alien& alien) {
         // sprawdza nachodzenie sie pocisku z pojedynczym kwadratem z tych tam kilku w ocb
         if (bullet.x < alien.x + alien.width &&
@@ -327,6 +404,10 @@ public:
         return false; // Brak kolizji.
     }
 
+    /**
+     * @brief Metoda sprawdzająca kolizje między graczem a obcymi statkami.
+     * @param player Referencja do obiektu gracza.
+     */
     void CheckCollisions(const Player& player) {
         for (int j = 0; j < sizeof(e1.tab) / sizeof(e1.tab[0]); j++) {
             if (e1.tab[j].alive) {
@@ -342,6 +423,9 @@ public:
         }
     }
 
+    /**
+ * @brief Metoda wzmocnienia obcych statków po zniszczeniu grupy.
+ */
     void AlienReinforcement()
     {
         if (e1.dead == (sizeof(e1.tab) / sizeof(e1.tab[0])))
@@ -357,7 +441,9 @@ public:
 
 
     //Pętla główna gry, wyświetlanie okna
-
+        /**
+     * @brief Metoda uruchamiająca główną pętlę gry.
+     */
     void Run() {
         Background1 = bh1.LoadTexture("Textury/Background1.png", renderer);
         Start = bh1.LoadTexture("Textury/Start.png", renderer);
@@ -449,7 +535,9 @@ public:
         }
 
     }
-
+    /**
+ * @brief Metoda aktualizująca pozycję i stan wszystkich pocisków gracza.
+ */
     void UpdateBullets() {
         for (int i = 0; i < p1.bullets.size(); i++) {
             p1.bullets[i].Move();
@@ -459,7 +547,9 @@ public:
         }
     }
 
-
+    /**
+ * @brief Metoda rysująca wszystkie pociski gracza na ekranie.
+ */
     void DrawBullets() {
         for (int i = 0; i < p1.bullets.size(); i++) {
             if (p1.bullets[i].active) {
@@ -468,7 +558,9 @@ public:
         }
     }
 
-
+    /**
+ * @brief Metoda rysująca elementy gry na ekranie.
+ */
     void Draw()
     {
         SDL_Rect back = { 0,0,Width,Height };
@@ -502,6 +594,9 @@ public:
 
 
     }
+    /**
+ * @brief Metoda obsługująca ruch gracza i strzały.
+ */
     void MovementHandle()
     {
         const Uint8* state = SDL_GetKeyboardState(NULL);
@@ -536,7 +631,9 @@ public:
 
 
     }
-
+    /**
+ * @brief Metoda rysująca aktualny wynik gracza na ekranie.
+ */
     void RenderScore() {
         TTF_Font* font = TTF_OpenFont("C:/Labolatorium_grafika/Space/Space/arial.ttf", 24);
         if (!font) {
@@ -576,7 +673,9 @@ public:
         TTF_CloseFont(font);
     }
 
-    // Desktruktor
+    /**
+     * @brief Destruktor klasy Engine.
+     */
     ~Engine() {
         SDL_DestroyWindow(window);
         SDL_DestroyRenderer(renderer);
@@ -585,7 +684,12 @@ public:
 
 
 };
-
+/**
+ * @brief Główna funkcja programu.
+ * @param argc Liczba argumentów wiersza poleceń.
+ * @param argv Tablica zawierająca argumenty wiersza poleceń.
+ * @return Kod zakończenia programu.
+ */
 int main(int argc, char* argv[]) {
     if (TTF_Init() == -1) {
         cerr << "SDL_ttf could not be initialized! SDL_ttf Error: " << TTF_GetError() << endl;

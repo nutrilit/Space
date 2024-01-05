@@ -1,0 +1,82 @@
+\doxysection{Player Class Reference}
+\hypertarget{class_player}{}\label{class_player}\index{Player@{Player}}
+
+
+Klasa reprezentująca gracza.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8}\label{class_player_affe0cc3cb714f6deb4e62f0c0d3f1fd8} 
+{\bfseries Player} ()
+\begin{DoxyCompactList}\small\item\em Konstruktor klasy \doxylink{class_player}{Player}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_acfface17f41f0f50c3a983008fcc0b75}{Move\+Coordinates}} (int nx, int ny)
+\begin{DoxyCompactList}\small\item\em Metoda ustawiająca nowe współrzędne gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a7bfa2dbc4f8d47da1b38c81f60901099}\label{class_player_a7bfa2dbc4f8d47da1b38c81f60901099} 
+void {\bfseries Move\+Left} ()
+\begin{DoxyCompactList}\small\item\em Metoda odpowiadająca za ruch gracza w lewo. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_ad1af3cfd748e20c1dc94175bd28e8d3a}\label{class_player_ad1af3cfd748e20c1dc94175bd28e8d3a} 
+void {\bfseries Move\+Right} ()
+\begin{DoxyCompactList}\small\item\em Metoda odpowiadająca za ruch gracza w prawo. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a2105394431517a41d38140cb65982331}\label{class_player_a2105394431517a41d38140cb65982331} 
+void {\bfseries Shoot} ()
+\begin{DoxyCompactList}\small\item\em Metoda odpowiadająca za strzał gracza. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_player_ad285b3cb25e4a46ca944b9a416c1b13f}\label{class_player_ad285b3cb25e4a46ca944b9a416c1b13f} 
+int {\bfseries x}
+\item 
+\Hypertarget{class_player_a6da29d6e3783c6028c92647bbde478f5}\label{class_player_a6da29d6e3783c6028c92647bbde478f5} 
+int {\bfseries y}
+\item 
+\Hypertarget{class_player_ab112e078741802afd6c095ddea241b2f}\label{class_player_ab112e078741802afd6c095ddea241b2f} 
+int {\bfseries width}
+\item 
+\Hypertarget{class_player_a682cd9664c9ea2e27c0f269d762bfa28}\label{class_player_a682cd9664c9ea2e27c0f269d762bfa28} 
+int {\bfseries height}
+\begin{DoxyCompactList}\small\item\em Współrzędne, szerokość i wysokość gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_ace6abae8d66534ad0a1fd6458f786a6e}\label{class_player_ace6abae8d66534ad0a1fd6458f786a6e} 
+int {\bfseries score}
+\begin{DoxyCompactList}\small\item\em Wynik gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a563800e92a9bf5d71af7032727c8e5df}\label{class_player_a563800e92a9bf5d71af7032727c8e5df} 
+SDL\+\_\+\+Rect {\bfseries rect}
+\begin{DoxyCompactList}\small\item\em Prostokąt reprezentujący gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_ae6fde45efb2a0fea7e1c5f61d51c4602}\label{class_player_ae6fde45efb2a0fea7e1c5f61d51c4602} 
+vector$<$ \mbox{\hyperlink{class_bullet}{Bullet}} $>$ {\bfseries bullets}
+\begin{DoxyCompactList}\small\item\em Wektor przechowujący pociski gracza. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a22796304ac405719a54d6150dacffecb}\label{class_player_a22796304ac405719a54d6150dacffecb} 
+int {\bfseries current\+Bullet}
+\begin{DoxyCompactList}\small\item\em Indeks aktualnego pocisku. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_a31a7fbeac3fa27df62593d8ca429226a}\label{class_player_a31a7fbeac3fa27df62593d8ca429226a} 
+Uint32 {\bfseries last\+Weapon\+Fire}
+\begin{DoxyCompactList}\small\item\em Czas ostatniego strzału gracza. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentująca gracza. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_player_acfface17f41f0f50c3a983008fcc0b75}\label{class_player_acfface17f41f0f50c3a983008fcc0b75} 
+\index{Player@{Player}!MoveCoordinates@{MoveCoordinates}}
+\index{MoveCoordinates@{MoveCoordinates}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{MoveCoordinates()}{MoveCoordinates()}}
+{\footnotesize\ttfamily void Player\+::\+Move\+Coordinates (\begin{DoxyParamCaption}\item[{int}]{nx,  }\item[{int}]{ny }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Metoda ustawiająca nowe współrzędne gracza. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & Nowa współrzędna x. \\
+\hline
+{\em ny} & Nowa współrzędna y. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Projekt\+Graf.\+cpp\end{DoxyCompactItemize}

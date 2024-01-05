@@ -1,0 +1,89 @@
+\doxysection{Bullet Class Reference}
+\hypertarget{class_bullet}{}\label{class_bullet}\index{Bullet@{Bullet}}
+
+
+Klasa reprezentująca pocisk gracza.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_bullet_acd7befc0bc18907cc1d871d37bbdddeb}\label{class_bullet_acd7befc0bc18907cc1d871d37bbdddeb} 
+{\bfseries Bullet} ()
+\begin{DoxyCompactList}\small\item\em Konstruktor klasy \doxylink{class_bullet}{Bullet}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_bullet_a9424ca7a81020aec3e4788eeb9fede5b}{Shoot}} (int playerX, int playerY)
+\begin{DoxyCompactList}\small\item\em Metoda odpowiadająca za strzał pocisku. \end{DoxyCompactList}\item 
+\Hypertarget{class_bullet_a24645e7395429c75ec03e57b5bd64448}\label{class_bullet_a24645e7395429c75ec03e57b5bd64448} 
+void {\bfseries Move} ()
+\begin{DoxyCompactList}\small\item\em Metoda odpowiadająca za ruch pocisku. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_bullet_a3812eb11d33acb5c4ce55f08a582fbc5}{Draw}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}bullet\+Texture)
+\begin{DoxyCompactList}\small\item\em Metoda odpowiadająca za rysowanie pocisku. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_bullet_add8da3ee8a3265a38ebbfe8a254ebb19}\label{class_bullet_add8da3ee8a3265a38ebbfe8a254ebb19} 
+int {\bfseries x}
+\item 
+\Hypertarget{class_bullet_a524e0ee515b1418341cdd8f8dffce1ee}\label{class_bullet_a524e0ee515b1418341cdd8f8dffce1ee} 
+int {\bfseries y}
+\item 
+\Hypertarget{class_bullet_a94c084705fe5607f4765145e1c69ddaf}\label{class_bullet_a94c084705fe5607f4765145e1c69ddaf} 
+int {\bfseries width}
+\item 
+\Hypertarget{class_bullet_af5ca31331080382131599857ccbf6280}\label{class_bullet_af5ca31331080382131599857ccbf6280} 
+int {\bfseries height}
+\begin{DoxyCompactList}\small\item\em Współrzędne, szerokość i wysokość pocisku. \end{DoxyCompactList}\item 
+\Hypertarget{class_bullet_addc6dd4fce8e6202e68c6e539ab4eac5}\label{class_bullet_addc6dd4fce8e6202e68c6e539ab4eac5} 
+SDL\+\_\+\+Rect {\bfseries rect}
+\begin{DoxyCompactList}\small\item\em Prostokąt reprezentujący pocisk. \end{DoxyCompactList}\item 
+\Hypertarget{class_bullet_af049bb84d3cafeb49adbcc65939e111f}\label{class_bullet_af049bb84d3cafeb49adbcc65939e111f} 
+bool {\bfseries active}
+\begin{DoxyCompactList}\small\item\em Flaga określająca, czy pocisk jest aktywny. \end{DoxyCompactList}\item 
+\Hypertarget{class_bullet_a63c8be0c37cfc21685e19c2bbb6fe895}\label{class_bullet_a63c8be0c37cfc21685e19c2bbb6fe895} 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} {\bfseries Texture}
+\begin{DoxyCompactList}\small\item\em Tekstura pocisku. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentująca pocisk gracza. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_bullet_a3812eb11d33acb5c4ce55f08a582fbc5}\label{class_bullet_a3812eb11d33acb5c4ce55f08a582fbc5} 
+\index{Bullet@{Bullet}!Draw@{Draw}}
+\index{Draw@{Draw}!Bullet@{Bullet}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily void Bullet\+::\+Draw (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}}]{bullet\+Texture }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Metoda odpowiadająca za rysowanie pocisku. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & Renderer SDL. \\
+\hline
+{\em bullet\+Texture} & Tekstura pocisku. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_bullet_a9424ca7a81020aec3e4788eeb9fede5b}\label{class_bullet_a9424ca7a81020aec3e4788eeb9fede5b} 
+\index{Bullet@{Bullet}!Shoot@{Shoot}}
+\index{Shoot@{Shoot}!Bullet@{Bullet}}
+\doxysubsubsection{\texorpdfstring{Shoot()}{Shoot()}}
+{\footnotesize\ttfamily void Bullet\+::\+Shoot (\begin{DoxyParamCaption}\item[{int}]{playerX,  }\item[{int}]{playerY }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Metoda odpowiadająca za strzał pocisku. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em playerX} & Współrzędna x gracza. \\
+\hline
+{\em playerY} & Współrzędna y gracza. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Projekt\+Graf.\+cpp\end{DoxyCompactItemize}

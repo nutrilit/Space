@@ -1,0 +1,47 @@
+\doxysection{Sprite\+Object Class Reference}
+\hypertarget{class_sprite_object}{}\label{class_sprite_object}\index{SpriteObject@{SpriteObject}}
+
+
+Klasa reprezentuj¹ca obiekt sprite\textquotesingle{}a.  
+
+
+
+
+{\ttfamily \#include $<$Sprite\+Object.\+h$>$}
+
+Inheritance diagram for Sprite\+Object\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_sprite_object}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_animated_object}{Animated\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_animated_object_a8cb542394d4ae99c5a3b7e86f41a6ed1}{animate}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}Animation, SDL\+\_\+\+Rect \&rect, int i)
+\begin{DoxyCompactList}\small\item\em Wirtualna funkcja do animowania obiektu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_bitmap_handler}{Bitmap\+Handler}}}
+\begin{DoxyCompactItemize}
+\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_bitmap_handler_a71eb90c8cb82c99182b9d4a96fa8525a}{Load\+Texture}} (const char \texorpdfstring{$\ast$}{*}Name\+Of\+Texture, SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer)
+\begin{DoxyCompactList}\small\item\em £aduje pojedyncz¹ teksturê z pliku graficznego. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_bitmap_handler_a3d909ee835ef24cf06ec18cd0fb6347b}{Load\+Animation}} (const char \texorpdfstring{$\ast$}{*}Name\+Of\+Texture, SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, int Frames)
+\begin{DoxyCompactList}\small\item\em £aduje animacjê jako tablicê wskaŸników SDL\+\_\+\+Texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_bitmap_object}{Bitmap\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_bitmap_object_a336709e3a6367dee4078b9a4965225df}{Draw}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}Texture, SDL\+\_\+\+Rect \&rect)
+\begin{DoxyCompactList}\small\item\em Funkcja rysuj¹ca obiekt na podstawie tekstury i prostok¹ta. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_bitmap_object_ada0d39072975ff95aba904dc0b33ae87}{Draw}} (SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, SDL\+\_\+\+Rect rect1, SDL\+\_\+\+Color color)
+\begin{DoxyCompactList}\small\item\em Funkcja rysuj¹ca prostok¹t o okreœlonym kolorze. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Klasa reprezentuj¹ca obiekt sprite\textquotesingle{}a. 
+
+Klasa ta dziedziczy zarówno po klasie \doxylink{class_animated_object}{Animated\+Object}, umo¿liwiaj¹cej animowanie obiektów, jak i po \doxylink{class_bitmap_object}{Bitmap\+Object}, obs³uguj¹cej obiekty graficzne korzystaj¹ce z bitmap. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Sprite\+Object.\+h\end{DoxyCompactItemize}

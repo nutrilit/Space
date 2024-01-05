@@ -1,0 +1,68 @@
+\doxysection{Bitmap\+Handler Class Reference}
+\hypertarget{class_bitmap_handler}{}\label{class_bitmap_handler}\index{BitmapHandler@{BitmapHandler}}
+Inheritance diagram for Bitmap\+Handler\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_bitmap_handler}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_bitmap_handler_a71eb90c8cb82c99182b9d4a96fa8525a}{Load\+Texture}} (const char \texorpdfstring{$\ast$}{*}Name\+Of\+Texture, SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer)
+\begin{DoxyCompactList}\small\item\em £aduje pojedyncz¹ teksturê z pliku graficznego. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_bitmap_handler_a3d909ee835ef24cf06ec18cd0fb6347b}{Load\+Animation}} (const char \texorpdfstring{$\ast$}{*}Name\+Of\+Texture, SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}renderer, int Frames)
+\begin{DoxyCompactList}\small\item\em £aduje animacjê jako tablicê wskaŸników SDL\+\_\+\+Texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_bitmap_handler_a3d909ee835ef24cf06ec18cd0fb6347b}\label{class_bitmap_handler_a3d909ee835ef24cf06ec18cd0fb6347b} 
+\index{BitmapHandler@{BitmapHandler}!LoadAnimation@{LoadAnimation}}
+\index{LoadAnimation@{LoadAnimation}!BitmapHandler@{BitmapHandler}}
+\doxysubsubsection{\texorpdfstring{LoadAnimation()}{LoadAnimation()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Bitmap\+Handler\+::\+Load\+Animation (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{Name\+Of\+Texture,  }\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer,  }\item[{int}]{Frames }\end{DoxyParamCaption})}
+
+
+
+£aduje animacjê jako tablicê wskaŸników SDL\+\_\+\+Texture. 
+
+Funkcja zak³ada, ¿e klatki animacji s¹ nazwane sekwencyjnie z indeksem jako czêœci¹ nazwy pliku. Na przyk³ad, jeœli Name\+Of\+Texture to "{}animacja/klatka\+\_\+"{}, zostan¹ za³adowane "{}animacja/klatka\+\_\+0"{}, "{}animacja/klatka\+\_\+1"{}, itd.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name\+Of\+Texture} & Bazowa nazwa klatek animacji. \\
+\hline
+{\em renderer} & WskaŸnik do SDL\+\_\+\+Renderer u¿ywanego do tworzenia tekstury. \\
+\hline
+{\em Frames} & Liczba klatek w animacji. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tablica wskaŸników SDL\+\_\+\+Texture reprezentuj¹ca klatki animacji. 
+\end{DoxyReturn}
+\Hypertarget{class_bitmap_handler_a71eb90c8cb82c99182b9d4a96fa8525a}\label{class_bitmap_handler_a71eb90c8cb82c99182b9d4a96fa8525a} 
+\index{BitmapHandler@{BitmapHandler}!LoadTexture@{LoadTexture}}
+\index{LoadTexture@{LoadTexture}!BitmapHandler@{BitmapHandler}}
+\doxysubsubsection{\texorpdfstring{LoadTexture()}{LoadTexture()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} Bitmap\+Handler\+::\+Load\+Texture (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{Name\+Of\+Texture,  }\item[{SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*}}]{renderer }\end{DoxyParamCaption})}
+
+
+
+£aduje pojedyncz¹ teksturê z pliku graficznego. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name\+Of\+Texture} & Œcie¿ka do pliku tekstury. \\
+\hline
+{\em renderer} & WskaŸnik do SDL\+\_\+\+Renderer u¿ywanego do tworzenia tekstury. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+WskaŸnik do za³adowanej tekstury SDL\+\_\+\+Texture. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Bitmap\+Handler.\+h\item 
+Bitmap\+Handler.\+cpp\end{DoxyCompactItemize}
